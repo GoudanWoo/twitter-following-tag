@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter 关注状态 + 列表标签
 // @namespace    https://github.com/GoudanWoo/twitter-following-tag
-// @version      1.0.0
+// @version      1.0.1
 // @description  根据关注状态显示不同标签, 并且根据所在列表显示自定义标签
 // @author       Goudan Woo
 // @homepage     https://x.com/GoudanWoo
@@ -470,7 +470,7 @@
     const primaryListListNameSelector = 'main div[data-testid="primaryColumn"] section[aria-labelledby|="accessible-list"] div[data-testid="listCell"] > div > div > div > div > div > div > div[dir="ltr"] > span';
 
     const primaryTitleSelector = 'main div[data-testid="primaryColumn"] h2[role="heading"] span > span';
-    const primaryHeaderUsernameSelector = 'main div[data-testid="primaryColumn"] div[data-testid="UserName"] *[role!="button"][role!="tab"][role!="listitem"][tabindex="-1"] div[dir="ltr"] > span';
+    const primaryHeaderUsernameSelector = 'main div[data-testid="primaryColumn"] div[data-testid="UserName"] *[role!="button"][role!="tab"][role!="listitem"][role!="article"][tabindex="-1"] div[dir="ltr"] > span';
     const primaryHeaderFollowingBtnTextSelector = 'main div[data-testid="primaryColumn"] div[data-testid="placementTracking"] button span > span';
     const primaryHeaderUnmuteBtnSelector = 'main div[data-testid="primaryColumn"] button[data-testid="unmuteLink"]';
 
@@ -659,7 +659,7 @@
 
     function updateTags(url) {
         $(`div[data-${dataidPrefix}-tags][data-${dataidPrefix}-tags!="${Storage.lastUpdated}"]`).remove();
-        $(`*[role!="button"][role!="tab"][role!="listitem"][tabindex="-1"][data-${dataidPrefix}!="${Storage.lastUpdated}"] div[dir="ltr"] > span`).each((_, usernameText) => {
+        $(`*[role!="button"][role!="tab"][role!="listitem"][role!="article"][tabindex="-1"][data-${dataidPrefix}!="${Storage.lastUpdated}"] div[dir="ltr"] > span`).each((_, usernameText) => {
             const targetUsernameWithAt = $(usernameText).text();
             if (!targetUsernameWithAt.startsWith('@')) {
                 console.warn("非预期的选择器结果", usernameText);
