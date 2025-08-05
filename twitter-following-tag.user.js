@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter 关注状态 + 列表标签
 // @namespace    https://github.com/GoudanWoo/twitter-following-tag
-// @version      1.0.1
+// @version      1.0.2
 // @description  根据关注状态显示不同标签, 并且根据所在列表显示自定义标签
 // @author       Goudan Woo
 // @homepage     https://x.com/GoudanWoo
@@ -726,8 +726,10 @@
     }
 
     function main(url, simplify) {
+        const urlParts = url.split('/').filter(urlPart => urlPart !== '');
+
         selfUsername = $(selfSelector)?.data()?.testid?.replace(avatarDataIdPrefixRegexp, '');
-        if (selfUsername === undefined) {
+        if (selfUsername === undefined && !(urlParts.length == 3 && urlParts[1] === 'article')) {
             return simplify;
         }
 
@@ -801,8 +803,7 @@
             }
         }
 
-        const urlParts = url.split('/').filter(urlPart => urlPart !== '');
-        if (urlParts.length > 0 && urlParts[0] !== selfUsername && !blacklistUrls.has(urlParts[0])) { // 个人页
+        if ((urlParts.length === 1 || urlParts.length === 2) && urlParts[0] !== selfUsername && !blacklistUrls.has(urlParts[0])) { // 个人页
             if (!isPrimaryTitleReady()) {
                 return simplify;
             }
