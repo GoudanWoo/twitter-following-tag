@@ -659,7 +659,7 @@
 
     function updateTags(url) {
         $(`div[data-${dataidPrefix}-tags][data-${dataidPrefix}-tags!="${Storage.lastUpdated}"]`).remove();
-        $(`*[role!="button"][role!="tab"][role!="listitem"][role!="article"][tabindex="-1"][data-${dataidPrefix}!="${Storage.lastUpdated}"] div[dir="ltr"] > span`).each((_, usernameText) => {
+        $(`*[role!="button"][role!="tab"][role!="listitem"][role!="article"][tabindex="-1"][data-${dataidPrefix}!="${Storage.lastUpdated}"] *[dir="ltr"] > span`).each((_, usernameText) => {
             const targetUsernameWithAt = $(usernameText).text();
             if (!targetUsernameWithAt.startsWith('@')) {
                 console.warn("非预期的选择器结果", usernameText);
