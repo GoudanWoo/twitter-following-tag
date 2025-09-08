@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter 关注状态 + 列表标签
 // @namespace    https://github.com/GoudanWoo/twitter-following-tag
-// @version      1.0.3
+// @version      1.0.4
 // @description  根据关注状态显示不同标签, 并且根据所在列表显示自定义标签
 // @author       Goudan Woo
 // @homepage     https://x.com/GoudanWoo
