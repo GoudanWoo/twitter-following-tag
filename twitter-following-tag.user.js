@@ -488,7 +488,7 @@
     function findListByUserAvatarContainer(list, selector) {
         let foundNew = false;
         $(selector).each((_, userAvatarContainer) => {
-            const targetUsername = $(userAvatarContainer).data().testid.replace(avatarDataIdPrefixRegexp, '');
+            const targetUsername = $(userAvatarContainer).data().testid.replace(avatarDataIdPrefixRegexp, '').toLowerCase();
             if (!list.has(targetUsername)) {
                 list.add(targetUsername);
                 foundNew = true;
@@ -500,7 +500,7 @@
     function findListByListName(list) {
         let foundNew = false;
         $(primaryListListNameSelector).each((_, listName) => {
-            const targetListName = $(listName).text();
+            const targetListName = $(listName).text().toLowerCase();
             if (!list.has(targetListName)) {
                 list.add(targetListName);
                 foundNew = true;
@@ -571,7 +571,7 @@
         if (!targetUsernameWithAt.startsWith('@')) {
             return;
         }
-        const targetUsername = targetUsernameWithAt.replace(/^@/, '');
+        const targetUsername = targetUsernameWithAt.replace(/^@/, '').toLowerCase();
 
         const listNames = $(dialogContentListListNameSelector);
 
@@ -597,7 +597,7 @@
         if (!targetUsernameWithAt.startsWith('@')) {
             return;
         }
-        const targetUsername = targetUsernameWithAt.replace(/^@/, '');
+        const targetUsername = targetUsernameWithAt.replace(/^@/, '').toLowerCase();
 
         const followingBtnState = $(primaryHeaderFollowingBtnTextSelector).text();
         switch (followingBtnState) {
@@ -665,7 +665,7 @@
                 console.warn("非预期的选择器结果", usernameText);
                 return;
             }
-            const targetUsername = targetUsernameWithAt.replace(/^@/, '');
+            const targetUsername = targetUsernameWithAt.replace(/^@/, '').toLowerCase();
 
             const usernameBtn = $(usernameText).parents('*[tabindex="-1"]').get(0);
 
@@ -690,7 +690,7 @@
             });
             container.attr(`data-${dataidPrefix}-tags`, Storage.lastUpdated);
 
-            if (targetUsername === selfUsername) {
+            if (targetUsername === selfUsername.toLowerCase()) {
                 createTagElement("自己", '#fff', '#536471').appendTo(container);
             } else {
                 if (Storage.followings.has(targetUsername)) {
