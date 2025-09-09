@@ -500,7 +500,7 @@
     function findListByListName(list) {
         let foundNew = false;
         $(primaryListListNameSelector).each((_, listName) => {
-            const targetListName = $(listName).text().toLowerCase();
+            const targetListName = $(listName).text();
             if (!list.has(targetListName)) {
                 list.add(targetListName);
                 foundNew = true;
