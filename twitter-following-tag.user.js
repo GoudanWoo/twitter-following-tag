@@ -610,7 +610,8 @@
                 }
             }break;
             case "正在关注":
-            case "取消关注":{
+            case "取消关注":
+            case "订阅":{
                 if (!Storage.followings.has(targetUsername)) { // 未关注
                     Storage.followings_add(targetUsername);
                 }
